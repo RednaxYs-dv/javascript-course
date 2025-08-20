@@ -120,6 +120,38 @@ console.log(x, y);
 const averageAge = (ageJonas + ageSarah) / 2;
 console.log(ageJonas, ageSarah, averageAge); */
 
+
+/*
+const firstName = "Jonas";
+const birthYear = 1991;
+const job = "teacher";
+const year = 2037;
+
+const jonasNew = `I'm ${firstName}, a ${year - birthYear} year old ${job}!`;
+console.log(jonasNew);
+
+console.log(`I'm ${2037 - 1991} years old!`); // "I'm 46 years old!"
+console.log(`Math works: ${2 + 3}`); // "Math works: 5"
+
+const age = 15;
+
+if (age >= 18) {
+    console.log(`Sarah can start driving`);
+} else {
+    yearsLeft = 18 - age;
+    console.log(`Sarah is too young, Wait for another ${yearsLeft} years`);
+}
+
+const money = 0;
+if (money) {
+  console.log("Don't spend it all ;)");
+} else {
+  console.log("You should get a job!");
+}
+
+// Test with money = 0 - what happens? */
+
+
 // JavaScript Fundamentals - Hour 2
 
 ////////////////////////////////////
@@ -131,9 +163,23 @@ const heightMark = 1.69;
 const massJohn = 92;
 const heightJohn = 1.95;
 
-//let BMI = mass / height ** 2;
+const BMIMark = massMark / heightMark ** 2;
+const BMIJohn = massJohn / (heightJohn * heightJohn);
+console.log(`Mark's BMI ${BMIMark.toFixed(2)}, John's BMI ${BMIJohn.toFixed(2)}`);
+/* alternative way to calculate BMI
+const BMI = mass / (height * height);
+const BMI = mass / height ** 2;
+let BMI;
+let BMI = mass / height ** 2;
 console.log("Mark's BMI:", BMI = massMark / (heightMark ** 2));
-console.log("John's BMI:", BMI = massJohn / (heightJohn ** 2));
+console.log("John's BMI:", BMI = massJohn / (heightJohn ** 2)); */
 
 const markHigherBMI = (massMark / (heightMark ** 2)) > (massJohn / (heightJohn ** 2));
 console.log("Is Mark's BMI higher than John 's?", markHigherBMI);
+
+// Test Data 2
+if (BMIMark > BMIJohn) {
+    console.log(`Mark's BMI ${BMIMark.toFixed(2)} is higher than John's BMI(${BMIJohn.toFixed(2)})!`);
+} else {
+    console.log(`John's BMI (${BMIJohn.toFixed(2)}) is higher than Mark's BMI(${BMIMark.toFixed(2)})!`);
+}
