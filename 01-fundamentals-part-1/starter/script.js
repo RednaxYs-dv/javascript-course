@@ -4,18 +4,34 @@
 let js = "amazing";
 console.log(40 + 8 + 23 - 10);
 
-console.log("=== VARIABLES ===");
+
+
+console.log("=== DATA TYPES ===");
+
+// Number (integers and decimals)
+let age = 23;
+console.log(age);
+console.log(typeof age); // "number"
+
+// String (text in quotes)
 let firstName = "Jonas";
 console.log(firstName);
+console.log(typeof firstName); // "string"
 
-let age = 30;
-age = 40; // We can change let variables
-console.log(age);
+// Boolean (true or false)
+let javascriptIsFun = true;
+console.log(javascriptIsFun);
+console.log(typeof javascriptIsFun); // "boolean"
 
-const birthYear = 1991;
-console.log(birthYear);
+// Undefined (no value assigned yet)
+let year;
+console.log(year); // undefined
+console.log(typeof year); // "undefined"
 
-// birthYear = 1990;
+let dynamicVariable = 23;
 
-const PI  = 3.1415;
-console.log(PI);
+dynamicVariable = "Now Im a dynamic text fahh";
+console.log(dynamicVariable);   
+
+dynamicVariable = true;
+console.log(dynamicVariable); 
