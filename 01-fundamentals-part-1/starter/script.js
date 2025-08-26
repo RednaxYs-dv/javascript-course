@@ -183,3 +183,36 @@ if (BMIMark > BMIJohn) {
 } else {
     console.log(`John's BMI (${BMIJohn.toFixed(2)}) is higher than Mark's BMI(${BMIMark.toFixed(2)})!`);
 }
+
+// Type Conversion and Coercion 
+
+const inputYear = "1991";
+console.log(Number(inputYear), inputYear);
+console.log(Number(inputYear) + 18);
+console.log(typeof NaN);
+console.log(String(23), 23);
+console.log(typeof String(23));
+
+//type coercion (automatic conversion by JS engine itself)
+console.log("I am " + 23 + " years old");
+console.log("23" - "10" - 3);
+console.log("23"/"2");
+console.log("23"*"2");
+
+//tricky samples
+let n = "1" + 1;
+n = n - 1;
+console.log(n);
+
+console.log(2 + 3 + 4 + "5");
+console.log("10" - "4" - "3" - 2 + "5");
+
+//Exercise 1
+console.log("5" + 2); // it's 52, cuz string 5 then 2
+console.log("5" - 2); //it's 3 cuz string will be number 
+console.log("5" * 2); //it's 10, remember from earlier
+console.log("5" / 2); //it's 2.5, earlier.
+
+//explicit conversion
+const userAge = "25";
+const userScore = "95";
