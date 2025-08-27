@@ -135,3 +135,158 @@ console.log(checkWinner(scoreDolphins, scoreKoalas));
 scoreDolphins = calcAverage(85, 54, 41);
 scoreKoalas = calcAverage(23, 34, 27); 
 console.log(checkWinner(scoreDolphins, scoreKoalas));
+
+// Array - Creation and Access
+console.log("=== ARRAYS ===");
+const grades = [85, 92, 78, 96, 88];
+console.log(grades);
+
+const friends = ["Michael", "Steven", "Peter"];
+console.log(friends);
+
+const mixed = ["Jonas", 27, true, friends];
+console.log(mixed);
+
+const years = new Array(1991, 1984, 2008, 2020);
+console.log(years);
+
+const calcAge3 = function(birthYear) {
+    return 2025 - birthYear;
+};
+
+const ages = [calcAge3(2000), calcAge3(1995), calcAge3(1991)];
+console.log(ages);
+ages[1] - calcAge3(1950);
+console.log(ages);
+
+// Array - Methods
+const friends1 = ["Michael", "Steven", "Peter"];
+const newLength = friends1.push("Jay");
+console.log(friends1);
+console.log(newLength);
+
+friends1.unshift("John");
+console.log(friends1);
+console.log(newLength);
+
+const popped = friends1.pop();
+console.log(popped);
+console.log(friends1);
+
+const shifted = friends1.shift();
+console.log(shifted);
+console.log(friends1);
+
+//pop()
+//shift()
+
+console.log(friends1.indexOf("Michael"));
+console.log(friends1.indexOf("John"));
+
+console.log(friends1.includes("Michael"));
+console.log(friends1.includes("John"));
+
+// Array Iteration - for loop
+console.log("=== ARRAY ITERATION - for loop ===");
+const friends2 = ["Michael", "Steven", "Peter"];
+
+// for loop
+for (let i = 0; i < friends2.length; i++) {
+    console.log(`Hello ${friends2[i]}`);
+}
+
+const years1 = [1991, 2007, 1969, 2020];
+const ages1 = [];
+
+for (let i = 0; i < years1.length; i++) {
+    ages1.push(2025 - years1[i]);
+}
+console.log(ages1);
+
+// foreach loop
+console.log("=== ARRAY ITERATION - foreach loop ===");
+friends2.forEach(function(friend, index) {
+    console.log(`${index}: ${friend}`);
+});
+
+// Arrow function
+friends2.forEach((friend, index) => {
+console.log(`Friend ${index + 1}: ${friend}`);
+});
+
+// Example: Calculate total grades
+const grades1 = [85, 92, 78, 96, 88, 74];
+let total = 0;
+
+// calculate total using for loop
+for (let i = 0; i < grades1.length; i++) {
+total += grades1[i];
+}
+const average1 = total / grades1.length;
+console.log(`Average grade (for loop): ${average1.toFixed(2)}`);
+
+// Count passing grades using forEach
+let passingCount = 0;
+grades1.forEach((grade) => {
+    if (grade >= 70) passingCount++;
+});
+console.log(`${passingCount} out of ${grades1.length} students passed`);
+
+// Coding Challenge #2
+console.log("======Challenge 2======");
+
+const grades2 = [78, 85, 92, 67, 88, 95, 73, 82];
+
+//FUnction to calculate average
+function calculateAverage(grades2) {
+    let sum = 0;
+    for (let i = 0; i < grades2.length; i++) {
+        sum += grades2[i];
+    }
+    return sum / grades2.length;
+}
+
+// Function to find highest grade
+function findHighestGrade(grades2) {
+let highest = grades2[0];
+    for (let i = 1; i < grades2.length; i++) {
+        if (grades2[i] > highest) {
+            highest = grades2[i];
+        }
+    }
+    return highest;
+}
+
+function findLowestGrade(grades2) {
+let lowest = grades2[0];
+    for (let i = 1; i < grades2.length; i++) {
+        if (grades2[i] < lowest) {
+            lowest = grades2[i];
+        }
+    }
+    return lowest;
+}
+
+function countPassing(grades2, passingGrade) {
+    let count = 0;
+    for (let i = 0; i < grades2.length; i++) {
+        if (grades2[i] >= passingGrade) {
+            count++;
+        }
+    }
+    return count;
+}
+
+// Generate report
+const average0 = calculateAverage(grades2);
+const highestGrade = findHighestGrade(grades2);
+const lowestGrade = findLowestGrade(grades2);
+const passingCount1 = countPassing(grades2, 70);
+
+console.log("Grade Report:");
+console.log(`Average Grade: ${average0.toFixed(2)}`);
+console.log(`Highest Grade: ${highestGrade}`);
+console.log(`Lowest Grade: ${lowestGrade}`);
+console.log(`Number of Passing Students: ${passingCount1} out of ${grades2.length}`);
+
+// JavaScript Fundamentals Part 2 - Hour 2
