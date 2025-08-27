@@ -1,1 +1,0 @@
-console.log(`Fundamentals Part 2: Functions ready!`);
