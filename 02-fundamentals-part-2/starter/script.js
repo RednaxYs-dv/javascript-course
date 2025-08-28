@@ -290,3 +290,21 @@ console.log(`Lowest Grade: ${lowestGrade}`);
 console.log(`Number of Passing Students: ${passingCount1} out of ${grades2.length}`);
 
 // JavaScript Fundamentals Part 2 - Hour 2
+
+
+// The Array Problem
+console.log("======The Array Problem======");
+const jonasArray = [
+    "Jonas",
+    "Schmedtmann",
+    2037 - 1991,
+    "teacher",
+    ["Michael", "Peter", "Steven"]
+];
+
+console.log(jonasArray[0]);
+console.log(jonasArray[1]);
+console.log(jonasArray[2]);
+console.log(jonasArray[3]);
+console.log(jonasArray[4]);
+
