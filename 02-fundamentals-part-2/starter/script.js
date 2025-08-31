@@ -499,3 +499,15 @@ console.log(user.getSummary());
 
 //JavaScript Fundamentals Part 2 - Hour 3
 
+// Selecting DOM Elements
+console.log("=== SELECTING DOM ELEMENTS ===");
+console.log(document.querySelector(".message").textContent);
+
+document.querySelector(".message").textContent = "Correct Number! 🎉";
+console.log(document.querySelector(".message").textContent);
+
+document.querySelector(".number").textContent = 13;
+document.querySelector(".score").textContent = 10;
+
+document.querySelector(".guess").value = 23;
+console.log(document.querySelector(".guess").value);
