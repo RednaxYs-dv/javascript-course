@@ -308,3 +308,194 @@ console.log(jonasArray[2]);
 console.log(jonasArray[3]);
 console.log(jonasArray[4]);
 
+console.log("=== OBJECTS ===");
+
+const jonas = {
+    firstName: "Jonas",
+    lastName: "Schmedtmann",
+    age: 2037 - 1991,
+    job: "teacher",
+    friends: ["Michael", "Peter", "Steven"]
+};
+console.log(jonas);
+
+// array approach
+const jonasArray1 = [
+    "Jonas",
+    "Schmedtmann",
+    46,
+    "teacher",
+    ["Michael", "Peter", "Steven Ambatukang"]
+]
+
+const jonasObject = {
+    firstName: "Alexander",
+    lastName: "Sy",
+    age: 21,
+    job: "unemployed asf",
+    friends: ["Patrick", "Uy", "Allan"],
+};
+
+console.log(jonasObject);
+
+const nameKey = "Name";
+console.log(jonas['first' + nameKey]);
+console.log(jonas["last" + nameKey]);
+
+jonas.job = "programmer";
+jonas['age'] = 35;
+console.log(jonas);
+
+jonas.location = "Portugal";
+jonas['twitter'] = "@jonasschmedtman";
+jonas.hasDriverLicense = true;
+console.log(jonas);
+
+// Create your own objects:
+// 1. Create a 'book' object with title, author, pages, and isRead properties
+// 2. Create a 'playlist' object with name, creator, songs array, and genre
+// 3. Access and log different properties using both dot and bracket notation
+// 4. Add a new property to each object
+// 5. Modify an existing property in each object
+
+// Your code here...
+
+// Example structure:
+const book = {
+  title: "The Great Ellen",
+  author: "Xander Ys",
+  pages: 100,
+  isRead: false,
+};
+
+const playlist = {
+  name: "Mah Playlist",
+  creator: "Sy Rednax",
+    songs: ["Shy Away", "Choker", "Robot Boy"],
+    genre: "Alternative Indie",
+};
+
+// Practice accessing properties
+console.log(book.title);
+console.log(playlist["creator"]);
+
+// Add new properties
+book.publisher = "Fiction House";
+playlist.yearCreated = 2023;
+
+console.log(book);
+console.log(playlist);
+// Modify existing properties
+book.isRead = true;
+playlist.genre = "Indie Rock";
+
+console.log(book);
+console.log(playlist);
+
+// Create a 'calculator' object:
+// 1. Properties: num1, num2, operator
+// 2. Methods: add(), subtract(), multiply(), divide()
+// 3. Method: calculate() that uses the operator to perform the right operation
+// 4. Method: getResult() that returns a formatted string
+// 5. Use 'this' to access the object's own properties
+
+const calculator = {
+  num1: 10,
+  num2: 5,
+  operator: "+",
+
+  add: function () {
+    return this.num1 + this.num2;
+},
+
+  subtract: function () {
+    return this.num1 - this.num2;
+  },
+
+  multiply: function () {
+    return this.num1 * this.num2;
+  },
+
+  divide: function () {
+    return this.num1 / this.num2;
+  },
+
+  calculate: function () {
+    switch (this.operator) {
+      case "+":
+        return this.add();
+      case "-":
+        return this.subtract();
+      case "*":
+        return this.multiply();
+      case "/":
+        return this.divide();
+      default:
+        return "Invalid operator";
+    }
+  },
+
+  getResult: function () {
+    const result = this.calculate();
+    return `${this.num1} ${this.operator} ${this.num2} = ${result}`;
+  },
+};
+
+// Test your calculator
+console.log(calculator.calculate());
+console.log(calculator.getResult());
+
+////////////////////////////////////
+// Coding Challenge #3 - User Profile System
+
+const user = {
+  firstName: "Sarah",
+  lastName: "Johnson",
+  birthYear: 1995,
+  location: "New York",
+  interests: ["photography", "travel", "coding"],
+  friends: [
+    { name: "Michael", status: "active" },
+    { name: "Emma", status: "inactive" },
+    { name: "David", status: "active" },
+  ],
+  isActive: true,
+
+  // Calculate age method
+  calcAge: function () {
+    this.age = 2024 - this.birthYear;
+    return this.age;
+  },
+
+  // Add friend method
+  addFriend: function (name, status = "active") {
+    this.friends.push({ name: name, status: status });
+    return this.friends.length;
+  },
+
+  // Get active friends count
+  getActiveFriends: function () {
+    return this.friends.filter(friend => friend.status === "active").length;
+  },
+
+  // Toggle active status
+  toggleStatus: function () {
+    this.isActive = !this.isActive;
+    return this.isActive;
+  },
+
+  // Generate profile summary
+  getSummary: function () {
+    return `${this.firstName} is a ${this.calcAge()}-year-old from ${this.location}. They have ${this.getActiveFriends()} active friends and are currently ${this.isActive ? "active" : "inactive"}.`;
+  },
+};
+
+// Test your user profile system
+console.log(user.getSummary());
+user.addFriend("Alex", "active");
+user.toggleStatus();
+console.log(`After updates:`);
+console.log(user.getSummary());
+
+//JavaScript Fundamentals Part 2 - Hour 3
+
