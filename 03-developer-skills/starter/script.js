@@ -261,3 +261,230 @@ console.log("🎯 Framework mastered - ready for independent problem solving!");
 
 console.log("END OF PREVIEW 02 - DEVELOPER MINDSET & PROBLEM SOLVING");
 
+// Developer Skills Hour 3 - From Problem to Code: Mastering the Coding Process
+"use strict";
+
+console.log("=== HOUR 3: FROM PROBLEM TO CODE ===");
+
+/*
+Random Googling vs Strategic Research:
+
+RANDOM GOOGLING (Beginner Approach):
+- Search only when completely stuck
+- Use vague search terms like "javascript array problem"
+- Copy-paste first solution found
+- Don't understand what the code does
+- Same problems happen repeatedly
+
+STRATEGIC RESEARCH (Professional Approach):
+- Research proactively to understand concepts
+- Use specific, targeted search terms
+- Evaluate multiple solutions
+- Understand solutions before implementing
+- Build knowledge for future problems
+*/
+
+console.log(
+  "Goal: Master research and debugging like a professional developer"
+);
+console.log(
+  "Strategic research builds lasting knowledge, not just quick fixes"
+);
+
+// PROFESSIONAL GOOGLE RESEARCH TECHNIQUES
+
+/*
+RESEARCH CHALLENGE: Find Maximum Value in Array
+Search progression:
+1. "javascript maximum value array"
+2. "javascript Math.max array"  
+3. "javascript Math.max spread operator array"
+4. "Math.max MDN javascript"
+*/
+
+function demonstrateArrayMax(numbers) {
+    // Method 1 - Using Math.max with spread operator
+    const method1 = Math.max(...numbers);
+
+    // Method 2 - Using a loop
+    let method2 = numbers[0];
+    for (let i = 1; i < numbers.length; i++) {
+        if (numbers[i] > method2) method2 = numbers[i];
+    }
+
+    // Method 3 - Using reduce method
+    const method3 = numbers.reduce((max, curr) => (curr > max ? curr : max), numbers[0]);
+
+    return {method1, method2, method3};
+}
+
+// Test the function 1
+const testNumbers1 = [3, 5, 7, 2, 8];
+const maxResults1 = demonstrateArrayMax(testNumbers1);
+console.log("Multiple approaches from research:", maxResults1);
+
+// STACK OVERFLOW BEST PRACTICES
+function reverseStringMethods(str) {
+    // Method 1 - Using built-in methods
+    const method1 = str.split("").reverse().join("");
+
+    // Method 2 - Using a loop
+    let method2 = "";
+    for (let i = str.length - 1; i >= 0; i--) {
+        method2 += str[i];
+    }
+
+    // Method 3 - Using recursion
+   const method3 = [...str].reverse().join("");
+    
+    return {method1, method2, method3};
+}
+
+// Test Stack Overflow research
+const reverseResults = reverseStringMethods("JavaScript");
+console.log("String reversal methods from research:", reverseResults);
+
+// MDN DOCUMENTATION BEST PRACTICES
+function demonstrateConcat() {
+    const array1 = [1, 2, 3];
+    const array2 = [4, 5, 6];
+    const array3 = [7, 8, 9];
+
+    const simple = array1.concat(array2);
+    const multiple = array1.concat(array2, array3);
+
+    console.log("Original array1 unchanged:", array1);
+    return {simple, multiple};
+}
+
+const concatResults = demonstrateConcat();
+console.log("Array concatenation results from MDN research:", concatResults);
+
+// SYSTEMATIC DEBUGGING APPROACH
+function calculateAverageScore(scores) {
+    let total;
+
+    for (let i = 0; i <= scores.length; i++) { // < not <=
+        total += scores[i];
+    }
+    return total / (scores.length + 1); // scores.length not (scores.length + 1)
+
+}
+
+// Debugging the function
+const testScores = [85, 90, 78, 92];
+const buggyResult = calculateAverageScore(testScores);
+console.log("Average Score (with bug):", buggyResult);
+
+// BROWSER DEVELOPER TOOLS MASTERY
+function demonstrateConsoleDebugging(data) {
+    console.group("Debugging demonstrateConsoleDebugging");
+
+    console.log("Input data:", data);
+
+    if (typeof data != "object") {
+        console.warn("Warning: Expected object, got", typeof data);
+}
+
+console.table(data);
+
+    console.groupEnd();
+    return Array.isArray(data) ? data.length : Object.keys(data).length;  
+}
+
+const arrayData = [1, 2, 3, 4, 5];
+const objectData = {name: "Alice", age: 30, city: "Wonderland"};
+
+demonstrateConsoleDebugging(arrayData);
+demonstrateConsoleDebugging(objectData);
+
+console.log("=== CODING PROCESS COMPLETE ===");
+
+console.log("🎯 Mastered research and debugging like a pro developer!");
+
+// DEBUGGER STATEMENT DEMO
+function stepThroughDebugging(numbers) {
+    debugger; // Set breakpoint here
+    let sum = 0;
+    let count = 0;
+
+    for (let i = 0; i < numbers.length; i++) {
+    const currentNumber = numbers[i];
+
+    console.log(`Processing index ${i}: value = ${currentNumber}`);
+
+    if (typeof currentNumber === "number") {
+      sum += currentNumber;
+      count++;
+    } else {
+      console.error(`Invalid number at index ${i}:`, currentNumber);
+    }
+  }
+
+  const average = count > 0 ? sum / count : 0;
+  console.log("Final results:", { sum, count, average });
+
+  return average;
+}
+
+// Test debugging function - open dev tools to see debugger in action
+const mixedNumbers = [10, 20, "error", 30, null, 40];
+const debugResult = stepThroughDebugging(mixedNumbers);
+console.log("Debug session result:", debugResult);
+
+// SYSTEMATIC CODING PROCESS SUMMARY
+
+function calculateAverageScoreFixed(scores) {
+    if (!Array.isArray(scores) || scores.length === 0) {
+        console.error("Invalid input: Expected non-empty array");
+        return 0;
+    }
+
+    let total = 0;
+    let count = 0;
+
+    for (let i = 0; i < scores.length; i++) { // Fixed loop condition
+        if (typeof scores[i] === "number") {
+            total += scores[i];
+            count++;
+        } else {
+            console.warn(`Skipping non-number at index ${i}:`, scores[i]);
+        }
+    }
+
+    return count > 0 ? total / count : 0; // Only divide by count of numbers
+}
+
+const fixedResult = calculateAverageScoreFixed(testScores);
+console.log("Average Score (fixed):", fixedResult);
+
+// Comprehensive debugging verification
+console.group("Debugging Verification Tests");
+
+// Test 1 - Normal case
+const normalScores = [85, 92, 78, 96, 88];
+const normalResult = calculateAverageScoreFixed(normalScores);
+console.log("Normal case result:", normalResult);
+
+// Test 2 - Edge case with invalid data
+const mixedScores = [85, "invalid", 92, null, 78];
+const mixedResult = calculateAverageScoreFixed(mixedScores);
+console.log("Mixed data result:", mixedResult);
+
+// Test 3 - Error case with invalid input
+const errorResult = calculateAverageScoreFixed("not an array");
+console.log("Error case result:", errorResult);
+
+// Test 4 - Edge case with empty array
+const emptyResult = calculateAverageScoreFixed([]);
+console.log("Empty array result:", emptyResult);
+
+console.groupEnd();
+
+console.log("Systematic debugging process successfully applied!");
+console.log(
+  "All bugs identified, isolated, investigated, fixed, and prevented"
+);
+
+console.log("🚀 Ready for independent coding with a professional process!");
+console.log("END OF PREVIEW 03 - FROM PROBLEM TO CODE");
