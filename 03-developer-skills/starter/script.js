@@ -488,3 +488,121 @@ console.log(
 
 console.log("🚀 Ready for independent coding with a professional process!");
 console.log("END OF PREVIEW 03 - FROM PROBLEM TO CODE");
+
+// Developer Skills Hour 4 - Advanced Problem-Solving & Real-World Challenges
+"use strict";
+
+console.log("=== HOUR 4: ADVANCED PROBLEM-SOLVING & REAL-WORLD CHALLENGES ===");
+
+console.log("Goal: Tackle complex problems with advanced strategies");
+console.log("Focus: Real-world coding challenges and best practices");
+console.log("Ready to tackle complex problems using systematic approaches");
+console.log("Challenge: Build solutions that work under pressure");
+
+
+// MAIN CHALLENGE - FORECAST PRINTING FUNCTION
+
+const data1 = [17, 21, 23];
+const data2 = [12, 5, -5, 0, 4];
+
+function printForecast(arr) {
+    let str = "";
+
+    for (let i = 0; i < arr.length; i++) {
+        str += `... ${arr[i]}°C in ${i + 1} days `;
+    }
+    console.log("..." + str + "...");
+}
+
+printForecast(data1);
+printForecast(data2);
+
+console.log("Forecast printing function completed successfully!");
+
+// EXTENDED CHALLENGE - HANDLING MULTIPLE ARRAYS & EDGE CASES
+
+function printForecastMap(arr) {
+  const formatted = arr.map((temp, index) => `${temp}°C in ${index + 1} days`);
+  console.log("..." + formatted.join(" ... ") + " ...");
+}
+
+// Alternative 2 - Single line approach using reduce
+function printForecastReduce(arr) {
+  const result = arr.reduce(
+    (acc, temp, index) => acc + `${temp}°C in ${index + 1} days ... `,
+    "..."
+  );
+  console.log(result);
+}
+
+// Test alternative approaches
+console.log("Testing alternative implementations:");
+printForecastMap(data1);
+printForecastReduce(data1);
+
+// TIME-BASED CHALLENGE - REAL-TIME DATA HANDLING
+
+function analyzeWorkWeek(dailyHours) {
+    const totalHours = dailyHours.reduce((sum, hours) => sum + hours, 0);
+    const averageHours = Math.round((totalHours / dailyHours.length) * 10) / 10;
+    
+    const maxHours = Math.max(...dailyHours);
+    const maxDayIndex = dailyHours.indexOf(maxHours);
+    const days = ["Mon", "Tue", "Wed", "Thu", "Fri"];
+    const maxDay = days[maxDayIndex];
+    const daysWorked = dailyHours.filter(hours => hours > 0).length;
+
+    const isFullTime = totalHours >= 35;
+
+    return {
+        totalHours,
+        averageHours,
+        maxHours,
+        maxDay,
+        daysWorked,
+        isFullTime
+    };
+}
+
+const weeklyHours = [8, 6, 5, 0, 7];
+const workWeekAnalysis = analyzeWorkWeek(weeklyHours);
+console.log("Work Week Analysis:", workWeekAnalysis);
+
+console.log("Work week analysis function completed successfully!");
+
+// FINAL INTEGRATION: Debug and Enhance Legacy Code
+
+// Here's the buggy legacy code you need to fix
+function legacyForecastFunction(temperatures) {
+  // Multiple bugs hidden in this code!
+  var result = "";
+  for (var i = 1; i <= temperatures.length; i++) {
+    result = result + temperatures[i] + " degrees in day " + i + ", ";
+  }
+  return result;
+}
+
+// Test the buggy function to see what goes wrong
+const testData = [15, 18, 22, 19];
+console.log("Buggy function output:", legacyForecastFunction(testData));
+
+// Now, let's fix the legacy code using our problem-solving framework
+function fixedForecastFunction(temperatures) {
+    let result = "";
+    for (let i = 0; i < temperatures.length; i++) { // Fixed loop condition
+        result += `${temperatures[i]}°C in ${i + 1} days ... `; // Fixed string formatting
+    }
+    return "..." + result; // Added leading and trailing ellipses
+}
+
+// Test the fixed function
+const fixedOutput = fixedForecastFunction(testData);
+console.log("Fixed function output:", fixedOutput);
+
+console.log("Legacy code successfully debugged and enhanced!");
+
+console.log("=== ADVANCED PROBLEM-SOLVING COMPLETE ===");
+
+console.log("🎯 Mastered advanced problem-solving strategies!");
+console.log("🚀 Ready to tackle real-world coding challenges like a pro developer!");
+console.log("END OF PREVIEW 04 - ADVANCED PROBLEM SOLVING & REAL WORLD CHALLENGES");
