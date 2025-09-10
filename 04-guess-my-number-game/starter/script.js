@@ -12,13 +12,13 @@ const messageEl = document.querySelector('.message');
 console.log(messageEl);
 console.log(messageEl.textContent);
 
-messageEl.textContent = `🎉 Correct Number!`;
+messageEl.textContent = `Welcome!!!`;
 
-const scoreEl = document.querySelector('.score');
+/* const scoreEl = document.querySelector('.score');
 console.log(scoreEl);
 console.log(scoreEl.textContent);
 
-scoreEl.textContent = 30;
+scoreEl.textContent = 30; */
 
 const guessEl = document.querySelector('.guess');
 console.log(guessEl);
@@ -33,8 +33,8 @@ console.log('Current guess value:', guessInputEl.value);
 guessInputEl.value = 23;
 console.log('Guess set to:', guessInputEl.value);
 
-const numberEl = document.querySelector('.number');
-numberEl.textContent = 14;
+/* const numberEl = document.querySelector('.number');
+numberEl.textContent = 14; */
 
 const highscoreEl = document.querySelector('.highscore');
 console.log('Highscore:', highscoreEl.textContent);
@@ -44,7 +44,7 @@ const guessInput = document.querySelector('.guess');
 console.log('Guess input field:', guessInput);
 guessInput.value = 15;
 
-console.log('Number: ', numberEl);
+// console.log('Number: ', numberEl);
 console.log('Highscore: ', highscoreEl);
 console.log('Guess input: ', guessInput);
 
@@ -94,9 +94,11 @@ document.querySelector('.check').addEventListener('click', function() {
     } else if ( guess > secretNumber ) {
         console.log('Too high!');
         document.querySelector('.message').textContent = '📈 Too high!';
+        score--;
     } else if (guess < secretNumber) {
         console.log('Too low!');
         document.querySelector('.message').textContent = '📉 Too low!';
+        score--;
     }
 });
 // Always convert input to number for comparison
@@ -120,3 +122,5 @@ console.log('Ready for advanced features in Hour 2!');
 // Test your game one more time
 console.log('Secret number for testing:', secretNumber);
 console.log('Try to guess it!');
+
+// Hour 2 - Event Handling and User Interactions
