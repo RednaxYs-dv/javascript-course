@@ -1,5 +1,45 @@
 'use strict';
 
+// Ranges and defaults
+const MIN_NUMBER = 1;
+const MAX_NUMBER = 32;
+const START_SCORE = 32;
+
+// Cached selectors (single source of truth)
+ const bodyEl = document.body;
+const messageEl = document.querySelector('.message');
+const numberEl = document.querySelector('.number');
+const scoreEl = document.querySelector('.score');
+const highscoreEl1 = document.querySelector('.highscore');
+const guessInputEl1 = document.querySelector('.guess');
+const checkBtnEl1 = document.querySelector('.check');
+const againBtnEl1 = document.querySelector('.again'); 
+
+// UI Helpers
+
+function setMessage(text) {
+    messageEl.textContent = text;
+}
+function setNumber(value) {
+    numberEl.textContent = value;
+}
+function setScore(value) {
+    scoreEl.textContent = value;
+}
+function setHighscore(value) {
+    highscoreEl1.textContent = value;
+}
+function setBackground(color) {
+    bodyEl.style.backgroundColor = color;
+}
+function disablePlay(disabled) {
+    guessInputEl1.disabled = disabled;
+    checkBtnEl1.disabled = disabled;
+}
+function clearInput() {
+    guessInputEl1.value = '';
+}
+
 console.log(`=== GAME DEVELOPMENT: GUESS MY NUMBER ===`);
 
 console.log('Goal: Build a complete interactive game from scratch');
@@ -8,7 +48,6 @@ console.log('Focus: DOM manipulation, game state, and user interaction');
 // ===== DOM ELEMENTS SELECTION - THE FOUNDATION =====
 console.log("--- DOM ELEMENTS SELECTION ---");
 
-const messageEl = document.querySelector('.message');
 console.log(messageEl);
 console.log(messageEl.textContent);
 
@@ -79,7 +118,7 @@ console.log('Own game state initialized!');
 // Event Listeners - Making the Buttons Interactive!!!
 
 // Adding click event to the Check button
-document.querySelector('.check').addEventListener('click', function() {
+/* document.querySelector('.check').addEventListener('click', function() {
     const guess1 = Number(document.querySelector('.guess').value);
     console.log('Check button clicked!');
 
@@ -132,9 +171,52 @@ document.querySelector('.check').addEventListener('click', function() {
         document.body.style.backgroundColor = 'red';
     }
     document.querySelector('.score').textContent = score;
-});
+}); */
 // Always convert input to number for comparison
-const guess = Number(document.querySelector('.guess').value);
+// const guess = Number(document.querySelector('.guess').value);
+
+// Handlers 
+checkBtnEl1.addEventListener('click', function () {
+    const guess = Number(guessInputEl1.value);
+
+    // Validation
+    if (!guess) return setMessage('No number!!!');
+    if (guess < MIN_NUMBER || guess > MAX_NUMBER)
+        return setMessage (`Number must have been ${MIN_NUMBER} and ${MAX_NUMBER}!`);
+
+    if (guess === secretNumber) {
+        setMessage('🎉 Correct Number!');
+        setNumber(secretNumber);
+        setBackground('green');
+        if (score > highscore) {
+            highscore = score;
+            setHighscore(highscore);
+        }
+        disablePlay(true);
+        clearInput();
+        return;
+    }
+
+    // Wrong guess
+    setMessage(guess > secretNumber ? '📈 Too high!' : '📉 Too low!');
+    score--;
+    setScore(score);
+
+    if (score < 1) {
+        setMessage('💥 You lost!!!');
+        setNumber(secretNumber);
+        setBackground('red');
+        disablePlay(true);
+        clearInput();
+    }
+});
+
+againBtnEl1.addEventListener('click', function () {
+resetGameState();
+renderInitialUI();
+});
+
+
 
 // Why we need Number():
 console.log('Input as string:', document.querySelector('.guess').value); // "15"
@@ -197,3 +279,38 @@ console.log('Test: Try to win, try to lose, then restart!');
 // Hour 3 - Visual Polish and User Experience
 
 // WIN: set background to green
+
+// Hour 4: Code Optimization and Refactoring
+
+
+
+
+
+// Game State & Reset
+
+
+function resetGameState() {
+    score = START_SCORE;
+    secretNumber = Math.trunc(Math.random() * MAX_NUMBER) + MIN_NUMBER;
+}
+
+function renderInitialUI() {
+    setMessage('Start guessing...');
+    setNumber('?');
+    setScore(score);
+    clearInput();
+    disablePlay(false);
+    setBackground('');
+}
+
+// Enter key submits when possible
+window.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' && !checkBtnEl1.disabled) {
+        checkBtnEl1.click()
+    }
+});
+
+// Focus input on restart
+againBtnEl1.addEventListener('click', function () {
+guessInputEl1.focus()
+});
