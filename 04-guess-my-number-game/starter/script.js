@@ -80,7 +80,20 @@ console.log('Own game state initialized!');
 
 // Adding click event to the Check button
 document.querySelector('.check').addEventListener('click', function() {
+    const guess1 = Number(document.querySelector('.guess').value);
     console.log('Check button clicked!');
+
+    // 1) Missing input
+    if (!guess1) {
+        document.querySelector('.message').textContent = 'No number!';
+        return;
+    }
+
+    // 2) Out of range input
+    if (guess1 < 1 || guess1 > 32) {
+        document.querySelector('.message').textContent = '⛔ Out of range! Must be between 1 to 32!';
+        return; // stop in here
+    }
 
     // Getting the player's guess and convert to number
     const guess = Number(document.querySelector('.guess').value);
@@ -89,8 +102,10 @@ document.querySelector('.check').addEventListener('click', function() {
     // BAsic game logic - check if guess if correct
     if (guess === secretNumber) {
         console.log('Correct guess');
-        // document.querySelector('.message').textContent = '🎉 Correct Number!';
+         document.querySelector('.message').textContent = '🎉 Game Over!!!';
         document.querySelector('.number').textContent = secretNumber;
+        document.querySelector('.guess').value = '';
+        document.body.style.backgroundColor = 'green';
 
         if (score > highscore) {
             highscore = score;
@@ -109,10 +124,12 @@ document.querySelector('.check').addEventListener('click', function() {
         document.querySelector('.message').textContent = '📉 Too low!';
         score--;
     } if (score < 1) {
-        document.querySelector('.message').textContent = '💥 You lost the game!';
+        document.querySelector('.message').textContent = '💀 Game Over!';
+        document.querySelector('.guess').value = '';
         document.querySelector('.guess').disabled = true;
         document.querySelector('.check').disabled = true;
         score = 0;
+        document.body.style.backgroundColor = 'red';
     }
     document.querySelector('.score').textContent = score;
 });
@@ -149,7 +166,7 @@ document.querySelector('.again').addEventListener('click', function() {
     // Reset game state variables
     score = 32;
     secretNumber = Math.trunc(Math.random() * 32) + 1;
-
+    console.log('Game restarted! New secret number:', secretNumber);
     // Reset display
     document.querySelector('.message').textContent = 'Start guessing...';
     document.querySelector('.number').textContent = '?';
@@ -159,6 +176,9 @@ document.querySelector('.again').addEventListener('click', function() {
     // Re-enable input and check button
     document.querySelector('.guess').disabled = false;
     document.querySelector('.check').disabled = false;
+
+    document.body.style.backgroundColor = '';
+
 });
 
 ////////////////////////////////////
@@ -173,3 +193,7 @@ console.log('Ready for visual polish in Hour 3!');
 
 // Test your complete game
 console.log('Test: Try to win, try to lose, then restart!');
+
+// Hour 3 - Visual Polish and User Experience
+
+// WIN: set background to green
