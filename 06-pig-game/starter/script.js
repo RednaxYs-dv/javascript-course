@@ -29,6 +29,10 @@ const init = function () {
   current1El.textContent = 0;
 
   diceEl.classList.add('hidden');
+  player0El.classList.remove('player--winner');
+  player1El.classList.remove('player--winner');
+  player0El.classList.add('player--active');
+  player1El.classList.remove('player--active');
 };
 init();
 
@@ -102,7 +106,7 @@ btnHold.addEventListener('click', function () {
     document.getElementById(`score--${activePlayer}`).textContent =
       scores[activePlayer];
 
-    /* //2. Check if player's score is >=100
+    //2. Check if player's score is >=100
     if (scores[activePlayer] >= 100) {
       //Finish the game
       playing = false;
@@ -113,12 +117,13 @@ btnHold.addEventListener('click', function () {
         .classList.add('player--winner');
       document
         .querySelector(`.player--${activePlayer}`)
-        .classList.remove('player--active'); */
-    // } else {
+        .classList.remove('player--active'); 
+     } else {
       //Switch to the next player
       switchPlayer();
     }
-  });
+  }
+});
 
 console.log('Scores array:', scores);
 console.log('Current Score:', currentScore);
@@ -142,4 +147,22 @@ console.log('Playing:', playing);
 console.log('Player 0 active:', player0El.classList.contains('player--active'));
 console.log('Player 1 active:', player1El.classList.contains('player--active'));
 
+console.log('Current scores:', scores);
+console.log('Win condition met:', scores[activePlayer] >= 100);
+console.log('Game playing state:', playing);
 
+const btnNew = document.querySelector('.btn--new');
+btnNew.addEventListener('click', init);
+
+console.log('Game reset - scores:', scores);
+console.log('Game reset - playing:', playing);
+console.log('Game reset - active player:', activePlayer);
+
+console.log('Scores:', scores);
+console.log('Current Score:', currentScore);
+console.log('Active Player:', activePlayer);
+console.log('Playing:', playing);
+console.log('Player 0 winner:', player0El.classList.contains('player--winner'));
+console.log('Player 1 winner:', player1El.classList.contains('player--winner'));
+console.log('Player 0 active:', player0El.classList.contains('player--active'));
+console.log('Player 1 active:', player1El.classList.contains('player--active'));
