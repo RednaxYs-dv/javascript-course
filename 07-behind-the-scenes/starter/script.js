@@ -102,3 +102,26 @@ console.log(addExpr(2, 3));
 
 const apiUrl = 'https://jsonplaceholder.typicode.com/posts/1';
 console.log('Fetching data from', apiUrl);
+
+'use strict';
+
+
+// console.log(title); // Uncomment to test: TDZ with let
+let title = 'Behind the Scenes';
+
+function outer1() {
+  const label = 'outer';
+  function inner() {
+    console.log('scope:', label); // expect 'outer'
+  }
+  inner();
+}
+outer1();
+
+function one() {
+  two();
+}
+function two() {
+  console.log('stack: two');
+}
+one(); // expect 'stack: two'
