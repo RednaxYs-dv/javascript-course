@@ -268,3 +268,125 @@ const delayedGreeter = {
 };
 
 delayedGreeter.startCountdown();
+
+console.log('End of Hour 2 here');
+
+console.log('=== Hour 3: Summary & Practice ===');
+
+// PRIMITIVES
+let age = 19;
+let oldAge = age; //Independent copy
+age = 20;
+
+console.log('age:', age);
+console.log('oldAge:', oldAge);
+
+const me = { name: 'Lucy', age: 22 };
+const friend = me;
+
+friend.age = 27;
+
+console.log('Friend:', friend);
+console.log('Me:', me);
+
+function changeAge(person, newAge) {
+    person.age = newAge;
+    return person;
+}
+
+const originalPerson = { name: 'Trigger', age: 36 };
+const updatedPerson = changeAge(originalPerson, 40);
+
+console.log('Original:', originalPerson);
+console.log('Updated:', updatedPerson);
+console.log('Same Object?', originalPerson === updatedPerson);
+
+const original = {
+    name: 'Rednax',
+    age: 23, 
+    hobbies: ['listening to music', 'watching memes'],
+};
+
+const shallowCopy = { ...original };
+
+shallowCopy.name = 'Josh';
+console.log('original name:', original.name);
+console.log('copy name:', shallowCopy.name);
+
+ shallowCopy.hobbies.push('gaming');
+ console.log('original hobbies:', original.hobbies);
+ console.log('copy hobbies:', shallowCopy.hobbies);
+
+ const anotherCopy = Object.assign({}, original);
+ console.log('Object.assign copy:', anotherCopy);
+
+ const deepOriginal = {
+    name: 'Charlie',
+    age: 32,
+    address: { city: 'Paris', country: 'France' },
+    hobbies: ['travel', 'photography']
+ };
+
+ const deepCopy = structuredClone(deepOriginal);
+
+ deepCopy.address.city = 'London';
+ deepCopy.hobbies.push('cooking');
+
+ console.log('Original Address:', deepOriginal.address);
+ console.log('Copy Address:', deepCopy.address);
+ console.log('Original Hobbies:', deepOriginal.hobbies);
+ console.log('Copy Hobbies:', deepCopy.hobbies);
+
+ const problemObject = {
+    name: 'Test',
+    date: new Date(),
+    method: function () {
+        return 'hello';
+    },
+    undefinedValue: undefined,
+ };
+
+const brokenCopy = JSON.parse(JSON.stringify(problemObject));
+console.log('Broken copy:', brokenCopy);
+
+/* const workingCopy = structuredClone(problemObject);
+console.log('Working copy:', workingCopy); */
+
+function demonstrateThis() {
+  console.log('this in strict mode:', this); // undefined (not global object)
+}
+demonstrateThis();
+
+// 3. Object mutation prevention attempts
+const readOnlyObj = Object.freeze({ name: 'Frozen' });
+
+try {
+  readOnlyObj.name = 'Changed'; // Throws error in strict mode
+  console.log('Mutation succeeded');
+} catch (error) {
+  console.log('Strict mode caught error:', error.message);
+}
+
+const userManager = {
+    users: [],
+
+    addUser: function (userData) {
+    // Deep copy to avoid reference issues
+    const userCopy = structuredClone(userData);
+    this.users.push(userCopy);
+    return this; // Method chaining
+  },
+
+  getUsers: function () {
+    // Return shallow copy to prevent external mutation
+    return [...this.users];
+  },
+};
+
+// Test the complete system
+const originalUser = { name: 'John', preferences: { theme: 'dark' } };
+userManager.addUser(originalUser);
+
+originalUser.name = 'Modified';
+console.log('Original changed:', originalUser);
+console.log('Stored user:', userManager.getUsers()[0]);
