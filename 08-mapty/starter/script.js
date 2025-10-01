@@ -68,16 +68,113 @@ class Cycling extends Workout {
 }
 
 const run1 = new Running([39.7392, -104.9903], 5.2, 24, 178);
+console.log('=== RUNNING WORKOUT ===');
+console.log('Distance:', run1.distance, 'km');
+console.log('Duration:', run1.duration, 'min');
+console.log('Cadence:', run1.cadence, 'spm');
 console.log('Running workout:', run1);
 console.log('Running pace:', run1.pace.toFixed(1), 'min/km');
 console.log('Running description:', run1.description);
+console.log('ID:', run1.id);
 
 const cycling1 = new Cycling([39.7392, -104.9903], 27, 95, 528);
+console.log('=== CYCLING WORKOUT ===');
+console.log('Distance:', cycling1.distance, 'km');
+console.log('Duration:', cycling1.duration, 'min');
+console.log('Elevation Gain:', cycling1.elevationGain, 'm');
 console.log('Cycling workout:', cycling1);
 console.log('Cycling pace:', cycling1.speed.toFixed(1), 'km/h');
 console.log('Cycling description:', cycling1.description);
+console.log('ID:', cycling1.id);
+
+console.log('=== INHERITANCE TESTING ===');
+console.log(
+  'Both inherit from Workout:',
+  run1 instanceof Workout,
+  cycling1 instanceof Workout
+);
 
 run1.click();
 cycling1.click();
 console.log('Run clicks:', run1.clicks);
 console.log('Cycling clicks:', cycling1.clicks);
+
+
+
+console.log('Hour 1 is done from here');
+// Hour 1 done
+
+// Hour 2 starting here...
+
+console.log('Hour 2!!');
+
+// Check if geolocation is supported
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function (position) {
+        //Success callback - user granted permission
+        const { latitude } = position.coords;
+        const { longitude } = position.coords;
+        console.log(`User location: ${latitude}, ${longitude}`);
+    },
+    function () {
+        //Error callback
+        alert('Could not get your position');
+    }
+);
+}
+
+'use strict';
+
+    
+class App {
+  #map;
+  #mapZoomLevel = 13;
+  #mapEvent;
+  #workouts = [];
+
+  constructor() {
+    this._getPosition();
+  }
+
+  _getPosition() {
+    if (navigator.geolocation)
+      navigator.geolocation.getCurrentPosition(
+        this._loadMap.bind(this),
+        function () {
+          alert('Could not get your position');
+        }
+      );
+  }
+
+  _loadMap(position) {
+    const { latitude } = position.coords;
+    const { longitude } = position.coords;
+    const coords = [latitude, longitude];
+
+    this.#map = L.map('map').setView(coords, this.#mapZoomLevel);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(this.#map);
+
+    // Add click event listener
+    this.#map.on('click', this._showForm.bind(this));
+  }
+
+  _showForm(mapE) {
+    this.#mapEvent = mapE;
+    const { lat, lng } = mapE.latlng;
+
+    console.log(`Map clicked at: ${lat.toFixed(4)}, ${lng.toFixed(4)}`);
+
+    // Add a temporary marker to show where user clicked
+    L.marker([lat, lng])
+      .addTo(this.#map)
+      .bindPopup(`Clicked here: ${lat.toFixed(4)}, ${lng.toFixed(4)}`)
+      .openPopup();
+  }
+}
+
+// Create the app
+const app = new App();

@@ -1,0 +1,83 @@
+console.log('=== TESTING GEOLOCATION API ===');
+
+function getPosition() {
+  if (navigator.geolocation) {
+    console.log('🔍 Requesting user location...');
+    navigator.geolocation.getCurrentPosition(
+      loadMap,
+      function (error) {
+        console.error('Geolocation error:', error);
+
+        let message = 'Could not get your position. ';
+
+        switch (error.code) {
+          case error.PERMISSION_DENIED:
+            message +=
+              'Location access was denied. Please enable location services and refresh the page.';
+            break;
+          case error.POSITION_UNAVAILABLE:
+            message += 'Location information is unavailable.';
+            break;
+          case error.TIMEOUT:
+            message += 'Location request timed out.';
+            break;
+          default:
+            message += 'An unknown error occurred.';
+            break;
+        }
+
+        alert(`📍 ${message}`);
+        loadDefaultMap();
+      },
+      {
+        timeout: 10000,
+        enableHighAccuracy: true,
+        maximumAge: 600000,
+      }
+    );
+  } else {
+    alert('❌ Geolocation is not supported by this browser');
+    loadDefaultMap();
+  }
+}
+
+// Test the geolocation
+getPosition();
+
+// LEAFLET MAP INTEGRATION
+function loadMap(position) {
+  const { latitude, longitude } = position.coords;
+  console.log(`Loading map at coordinates: ${latitude}, ${longitude}`);
+
+  // array in leaflet format
+  const coords = [latitude, longitude];
+
+  const map = L.map('map').setView(coords, 13);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+    attribution:
+      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  }).addTo(map);
+
+  L.marker(coords).addTo(map).bindPopup('You are here!').openPopup();
+
+  console.log('Map loaded successfully at user location');
+}
+
+function loadDefaultMap() {
+  console.log('Loading default map location (London)');
+
+  // use the default coordinates
+  const defaultCoords = [51.5074, -0.1278];
+
+  const map = L.map('map').setView(defaultCoords, 13);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+    attribution:
+      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  }).addTo(map);
+
+  console.log('Default map loaded successfully');
+}
+
+ 
