@@ -134,17 +134,32 @@ class App {
 
   constructor() {
     this._getPosition();
+
+    // Event Handlers
+    form.addEventListener('submit', this._newWorkout?.bind(this));
+    inputType.addEventListener('change', this._toggleElevationField?.bind(this));
   }
+}
 
   _getPosition() {
-    if (navigator.geolocation)
-      navigator.geolocation.getCurrentPosition(
-        this._loadMap.bind(this),
-        function () {
-          alert('Could not get your position');
-        }
-      );
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      this._loadMap.bind(this),
+      this._handleLocationError.bind(this),
+      
+      {
+        timeout: 10000,
+        enableHighAccuracy: true,
+        maximumAge: 600000,
+      }
+    );
+  } else {
+    alert('Could not get your position');
   }
+}
+
+
+  
 
   _loadMap(position) {
     const { latitude } = position.coords;
@@ -176,5 +191,15 @@ class App {
   }
 }
 
+// Hour 3
+const form = document.querySelector('.form');
+const containerWorkouts = document.querySelector('.workouts');
+const inputType = document.querySelector('.form__input--type');
+const inputDistance = document.querySelector('.form__input--distance');
+const inputDuration = document.querySelector('.form__input--duration');
+const inputCadence = document.querySelector('.form__input--cadence');
+const inputElevation = document.querySelector('.form__input--elevation');
+
 // Create the app
 const app = new App();
+
